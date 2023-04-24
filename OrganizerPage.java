@@ -79,7 +79,7 @@ public class OrganizerPage implements  ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
-        frame.setMinimumSize(new Dimension(1280, 720));
+        // frame.setMinimumSize(new Dimension(1280, 720));
 
 
     }
