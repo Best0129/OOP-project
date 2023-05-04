@@ -1,112 +1,85 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class HomePage {
-    private JInternalFrame fr;
-    private JTextField text;
-    private JButton creator, visitor;
-    private JPanel button, but1, but2, blank, blank2, textarea, b1, b2, b3, pic;
-    private JLabel label1,text1, text2, text3;
-    private ImageIcon icon, logo, reicon;
 
-    public boolean isCreater(ActionEvent e) {
-        return e.getSource().equals(creator);
+    private JInternalFrame frame;
+    private JPanel main_panel, panel1, panel2, upper_panel;
+    private JButton organizer_btn, participant_btn, back_btn;
+//    private JLabel or;
+    private ImageIcon organizer_image, participant_image;
+
+    public JButton getParticipant_btn() {
+        return participant_btn;
     }
 
-    public boolean isVisitor(ActionEvent e) {
-        return  e.getSource().equals(visitor);
+    public JButton getOrganizer_btn() {
+        return organizer_btn;
     }
 
-    public JInternalFrame getFr() {
-        return fr;
+    public JInternalFrame getFrame() {
+        return frame;
     }
 
-    public JButton getVisitor() {
-        return visitor;
+    public boolean isOrganizer_btn(ActionEvent e) {
+        return e.getSource().equals(organizer_btn);
     }
 
-    public JButton getCreator() {
-        return creator;
+    public boolean isParticipant_btn(ActionEvent e) {
+        return  e.getSource().equals(participant_btn);
     }
 
-    public HomePage(){
-        fr = new JInternalFrame();
-        //fr.getContentPane().setBackground(Color.green);
-        Font f = new Font("TH SarabunPSK", Font.BOLD, 20);
-        text1 = new JLabel("You wanna meet us?");
-        text1.setHorizontalAlignment(JTextField.CENTER);
-        text1.setVerticalAlignment(JTextField.CENTER);
-        text1.setForeground(Color.RED);
-        text1.setFont(f);
+    public HomePage() {
+        organizer_image = new ImageIcon("IMG_8055.png");
+        Image image = organizer_image.getImage(); // transform it
+        Image newimg = image.getScaledInstance(720, 950,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        organizer_image = new ImageIcon(newimg);  // transform it back
+        participant_image = new ImageIcon("IMG_8057.png");
+        Image image1 = participant_image.getImage(); // transform it
+        Image newimg1 = image1.getScaledInstance(720, 850,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        participant_image = new ImageIcon(newimg1);  // transform it back
+        frame = new JInternalFrame("", false, false, false, false);
+        main_panel = new JPanel();
+        panel1 = new JPanel();
+        panel2 = new JPanel();
+        upper_panel = new JPanel();
+        organizer_btn = new JButton(organizer_image);
+        participant_btn = new JButton(participant_image);
+        back_btn = new JButton("Back");
+//        or = new JLabel("OR");
+        Font f = new Font("TH SarabunPSK", Font.BOLD, 30);
 
-        text2 = new JLabel("let's find out");
-        text2.setHorizontalAlignment(JTextField.CENTER);
-        text2.setForeground(Color.RED);
-        text2.setFont(f);
+        frame.setBackground(Color.RED);
+        frame.setLayout(new BorderLayout());
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)frame.getUI();
+        Component northPane = ui.getNorthPane();
+        northPane.setBackground(new Color(245, 13, 13));
+        main_panel.setLayout(new GridLayout(1, 2));
+        panel1.setLayout(new CardLayout(30, 30));
+        panel2.setLayout(new CardLayout(30, 30));
 
-        text3 = new JLabel("choose you choice");
-        text3.setHorizontalAlignment(JTextField.CENTER);
-        text3.setForeground(Color.RED);
-        text3.setFont(f);
+//        or.setFont(f);
+        panel1.add(participant_btn);
+        panel2.add(organizer_btn);
+        main_panel.add(panel1);
+//        main_panel.add(or);
+        main_panel.add(panel2);
+        upper_panel.add(back_btn);
+        frame.add(upper_panel, BorderLayout.NORTH);
+        frame.add(main_panel, BorderLayout.CENTER);
 
-        //b1 = new JPanel();
-        //b2 = new JPanel();
-        //b3 = new JPanel();
+        panel1.setBackground(Color.WHITE);
+        panel2.setBackground(Color.WHITE);
+        main_panel.setBackground(Color.WHITE);
+        upper_panel.setBackground(Color.WHITE);
 
-        //b1.setBackground(Color.blue);
-        //b2.setBackground(Color.yellow);
-        //b3.setBackground(Color.gray);
+        back_btn.setBackground(new Color(243, 198, 198));
 
-        //b1.add(text1);
-        //b2.add(text2);
-        //b3.add(text3);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
 
-        logo = new ImageIcon("logotest.jpg");
-        textarea = new JPanel();
-
-        textarea.setLayout(new GridLayout(5,1));
-
-        blank = new JPanel();
-        blank2 = new JPanel();
-
-        textarea.add(blank);
-        textarea.add(text1);
-        textarea.add(text2);
-        textarea.add(text3);
-        textarea.add(blank2);
-
-        label1 = new JLabel("Meeting Room", logo, JLabel.CENTER);
-        label1.setVerticalTextPosition(JLabel.BOTTOM);
-        label1.setHorizontalTextPosition(JLabel.CENTER);
-        pic = new JPanel();
-        pic.add(label1);
-
-        icon = new ImageIcon("user.png");
-        reicon = new ImageIcon(icon.getImage().getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH));
-        creator = new JButton("creator",reicon);
-        visitor = new JButton("visistor",reicon);
-        button = new JPanel();
-        but1 = new JPanel();
-        but2 = new JPanel();
-
-
-        //fr.setLayout(new GridLayout(3,1));
-        fr.setLayout(new BorderLayout());
-        fr.add(textarea, BorderLayout.NORTH);
-        fr.add(pic);
-
-        but1.add(creator);
-        but2.add(visitor);
-        button.setLayout(new FlowLayout());
-        button.add(but1);
-        button.add(but2);
-
-        fr.add(button, BorderLayout.SOUTH);
-
-        fr.setSize(606, 740);
-        fr.setVisible(true);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //fr.setMinimumSize(new Dimension(400, 700));
     }
 }

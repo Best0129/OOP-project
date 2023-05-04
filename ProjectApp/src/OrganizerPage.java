@@ -4,13 +4,16 @@ import java.awt.event.*;
 
 public class OrganizerPage implements  ActionListener {
     private JInternalFrame frame;
-    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7;
+    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8;
     private JLabel organize_label, meeting_name, meeting_place, numberofseat, priceperseat, diagram_image;
     private JTextField meeting_txt, place_txt, numberofseat_txt, price_txt, diagram_txt;
-    private JButton ok;
+    private JButton ok, back;
 
     public boolean isOk(ActionEvent e) {
         return e.getSource().equals(ok);
+    }
+    public boolean isBack(ActionEvent e) {
+        return  e.getSource().equals(back);
     }
 
     public JInternalFrame getFrame() {
@@ -40,6 +43,9 @@ public class OrganizerPage implements  ActionListener {
     public JButton getOk() {
         return ok;
     }
+    public JButton getBack() {
+        return back;
+    }
 
     public OrganizerPage() {
         frame = new JInternalFrame("Meeting Room");
@@ -50,6 +56,7 @@ public class OrganizerPage implements  ActionListener {
         panel5 = new JPanel();
         panel6 = new JPanel();
         panel7 = new JPanel();
+        panel8 = new JPanel();
         organize_label = new JLabel("Organizer");
         meeting_name = new JLabel("Meeting Name   :  ");
         meeting_place = new JLabel("Meeting Place    :  ");
@@ -62,11 +69,12 @@ public class OrganizerPage implements  ActionListener {
         price_txt = new JTextField(45);
         diagram_txt = new JTextField(45);
         ok = new JButton("Submit");
+        back = new JButton("back");
         Font f = new Font("TH SarabunPSK", Font.BOLD, 80);
         Font f_btn = new Font("TH SarabunPSK", Font.BOLD, 22);
         Font f_bigfont  = new Font("TH SarabunPSK", Font.BOLD, 25);
 
-        frame.setLayout(new GridLayout(7, 1));
+        frame.setLayout(new GridLayout(8, 1));
         organize_label.setFont(f);
         organize_label.setForeground(new Color(154, 84, 255));
         panel1.add(organize_label);
@@ -93,6 +101,8 @@ public class OrganizerPage implements  ActionListener {
         frame.add(panel6);
         panel7.add(ok);
         frame.add(panel7);
+        panel8.add(back);
+        frame.add(panel8);
         ok.setFont(f_btn);
         ok.setBackground(new Color(184, 134, 255));
         ok.setForeground(new Color(255,  255, 255));
@@ -110,7 +120,7 @@ public class OrganizerPage implements  ActionListener {
         diagram_txt.setColumns(25);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.setSize(1000, 800);
         frame.setVisible(false);
 
 

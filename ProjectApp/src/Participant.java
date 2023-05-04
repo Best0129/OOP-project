@@ -5,8 +5,8 @@ import java.awt.event.*;
 public class Participant {
     private JInternalFrame frame;
     private JFrame frame_image;
-    private JPanel pn1, pn2, pn3, pn4, sub_l1, sub_l2, sub_l3, pn_seat, pn_ok, pn_image, pn_cb, pn_subseat;
-    private JButton ok, image;
+    private JPanel pn1, pn2, pn3, pn4, sub_l1, sub_l2, sub_l3, pn_seat, pn_ok, pn_image, pn_cb, pn_subseat, pn_back;
+    private JButton ok, image, back;
     private JLabel participant, place_label, remaining_label, price_label, seat, open, choose_seat;
     private JTextField place_text, remaining_text, price_text;
     private JComboBox seat_cb;
@@ -18,6 +18,10 @@ public class Participant {
 
     public  boolean isImage(ActionEvent e) {
         return  e.getSource().equals(image);
+    }
+
+    public boolean isBack(ActionEvent e) {
+        return e.getSource().equals(back);
     }
 
     public JInternalFrame getFrame() {
@@ -52,6 +56,10 @@ public class Participant {
         return  image;
     }
 
+    public JButton getBack() {
+        return back;
+    }
+
     public Participant() {
         frame = new JInternalFrame();
         frame_image = new JFrame();
@@ -68,6 +76,7 @@ public class Participant {
         pn_image = new JPanel();
         pn_cb = new JPanel();
         pn_subseat = new JPanel();
+        pn_back = new JPanel();
         choose_seat = new JLabel("Choose your seat   ");
 
         open = new JLabel();
@@ -92,6 +101,7 @@ public class Participant {
 
         ok = new JButton("OK");
         image = new JButton("Diagram Image");
+        back = new JButton("back");
         participant = new JLabel("Participant");
         place_label = new JLabel("Meeting Place       :  ");
         remaining_label = new JLabel("Remaining seats   :  ");
@@ -120,7 +130,7 @@ public class Participant {
         price_label.setForeground(new Color(154, 84, 255));
 
 
-        frame.setLayout(new GridLayout(4, 1));
+        frame.setLayout(new GridLayout(5, 1));
         pn1.add(participant); //1
         frame.add(pn1, BorderLayout.NORTH);
 
@@ -153,7 +163,6 @@ public class Participant {
         pn_seat.add(pn_image);
         frame.add(pn_seat);
 
-
         ok.setBackground(new Color(184, 134, 255)); //4
         ok.setForeground(new Color(255, 255, 255));
         ok.setPreferredSize(new Dimension(200, 50));
@@ -162,8 +171,12 @@ public class Participant {
         pn_ok.add(ok);
         frame.add(pn_ok);
 
+        pn_back.add(back);
+        frame.add(pn_back);
+//        back.setBackground(new Color());
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(606, 740);
+        frame.setSize(1920, 1080);
         frame.setVisible(false);
 
     }
